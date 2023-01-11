@@ -5,7 +5,7 @@
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
 
-public class PeopleCallouts{
+public class RetrieveData{
     public void getPeople(){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
@@ -161,5 +161,5 @@ public class PeopleCallouts{
     }
 }
 
-PeopleCallouts test = new PeopleCallouts();
+RetrieveData test = new RetrieveData();
 test.getPeople();
