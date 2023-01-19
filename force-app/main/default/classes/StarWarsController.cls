@@ -23,14 +23,12 @@ public with sharing class StarWarsController {
                             Contact newContact = new Contact();
                             newContact.Firstname = person.name.substringBefore(' ');
                             newContact.Lastname = person.name.substringAfter(' ');
-                            Integer intCheck =  Integer.ValueOf(person.height);
-                            Integer intCheck2 = Integer.ValueOf(person.mass);
-                            if(String.ValueOf(intCheck).isNumeric()){
+                            if(person.height.isNumeric()){
                                 newContact.Height__c = Decimal.ValueOf(person.height);
                             } else{
                                 newContact.Height__c = null;
                             }
-                            if(String.ValueOf(intCheck2).isNumeric()){
+                            if(person.mass.isNumeric()){
                                 newContact.Mass__c = Decimal.ValueOf(person.mass);
                             } else{
                                 newContact.Mass__c = null;
