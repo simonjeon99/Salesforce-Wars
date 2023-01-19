@@ -94,6 +94,43 @@ public with sharing class StarWarsController {
                         }
                         else{
                             //perform creating planet and inserting into org 
+                            Account newAccount = new Account();
+                            newAccount.Name = planet.name;
+                            if(planet.rotation_period.isNumeric()){
+                                newAccount.Rotation__c = Decimal.ValueOf(planet.rotation_period);
+                            } else{
+                                newAccount.Rotation__c = null;
+                            }
+                            if(planet.orbital_period.isNumeric()){
+                                newAccount.Orbital__c = Decimal.ValueOf(planet.orbital_period);
+                            } else{
+                                newAccount.Orbital__c = null;
+                            }
+                            if(planet.diameter.isNumeric()){
+                                newAccount.Diameter__c = Decimal.ValueOf(planet.diameter);
+                            } else{
+                                newAccount.Diameter__c = null;
+                            }
+                            newAccount.Climate__c = planet.climate;
+                            newAccount.Gravity__c = planet.gravity;
+                            newAccount.Terrain__c = planet.terrain;
+                            if(planet.surface_water.isNumeric()){
+                                newAccount.Surface__c = Decimal.ValueOf(planet.surface_water);
+                            } else{
+                                newAccount.Surface__c = null;
+                            }
+                            if(planet.population.isNumeric()){
+                                newAccount.NumberOfEmployees = Integer.ValueOf(planet.population);
+                            } else{
+                                newAccount.NumberOfEmployees = null;
+                            }
+                            // newAccount.Residents__c = planets.residents;
+                            // newAccount.Films__c = planets.films;
+                            // newAccount.Created__c = planet.created;
+                            // newAccount.Edited__c = planet.edited;
+                            // newAccount.Url__c = planet.url;
+
+                            insert newAccount;
                         }
                     } catch(DmlException e){
                         System.debug('Error in inserting planets: ' + e);
