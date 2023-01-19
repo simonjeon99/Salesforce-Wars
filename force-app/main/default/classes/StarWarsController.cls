@@ -20,6 +20,36 @@ public with sharing class StarWarsController {
                         }
                         else{
                             //perform creating people and inserting into org 
+                            Contact newContact = new Contact();
+                            newContact.Firstname = person.name.substringBefore(' ');
+                            newContact.Lastname = person.name.substringAfter(' ');
+                            Integer intCheck =  Integer.ValueOf(person.height);
+                            Integer intCheck2 = Integer.ValueOf(person.mass);
+                            if(String.ValueOf(intCheck).isNumeric()){
+                                newContact.Height__c = Decimal.ValueOf(person.height);
+                            } else{
+                                newContact.Height__c = null;
+                            }
+                            if(String.ValueOf(intCheck2).isNumeric()){
+                                newContact.Mass__c = Decimal.ValueOf(person.mass);
+                            } else{
+                                newContact.Mass__c = null;
+                            }
+                            newContact.Haircolor__c = person.hair_color;
+                            newContact.Skincolor__c = person.skin_color;
+                            newContact.Eyecolor__c = person.eye_color;
+                            newContact.Birthyear__c = person.birth_year;
+                            newContact.Gender__c = person.gender;
+                            //newContact.Homeworld__c  = person.homeworld;
+                            // newContact.Films__c = person.films;
+                            // newContact.Species__c = person.species;
+                            // newContact.Vehicles__c = person.vehicles;
+                            // newContact.Starships__c = person.starships;
+                            // newContact.Created__c = person.created;
+                            // newContact.Edited__c = person.edited;
+                            // newContact.Url__c = person.url;
+                            
+                            insert newContact;
                         }
                     } catch(DmlException e){
                         System.debug('Error in inserting people: ' + e);
