@@ -1,6 +1,6 @@
 public with sharing class StarWarsController {
     @future (callout = true)
-    public void getPeople(){
+    public static void getPeople(){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/people/?format=json');
@@ -15,7 +15,7 @@ public with sharing class StarWarsController {
                     try{
                         wrapperPerson person = getPeople(i);
                         // check if the people request is empty.
-                        if(!person){
+                        if(person.name ==  null){
                             System.debug('empty person');
                         }
                         else{
@@ -31,28 +31,28 @@ public with sharing class StarWarsController {
         }
     }
 
-    @future (callout = true)
-    public wrapperPerson getPeople(Integer Id){
+    public static wrapperPerson getPeople(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/people/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
+        wrapperPerson person = new wrapperPerson();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            wrapperPerson person = (wrapperPerson)  JSON.deserialize(responseBody, wrapperPerson.class);            
+            person = (wrapperPerson)  JSON.deserialize(responseBody, wrapperPerson.class);            
         }
         return person;
     }
 
     @future (callout = true)
-    public void getPlanets(){
+    public static void getPlanets(){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/planets/?format=json');
         request.setMethod('GET');
         try{
-            HttpResponse reponse = http.send(request);
+            HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> planets = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
@@ -61,7 +61,7 @@ public with sharing class StarWarsController {
                     try{
                         wrapperPlanet planet = getPlanets(i);
                         // check if the planet request is empty.
-                        if(!planet){
+                        if(planet.name ==  null){
                             System.debug('empty planet');
                         }
                         else{
@@ -77,28 +77,28 @@ public with sharing class StarWarsController {
         }
     }
 
-    @future (callout = true)
-    public wrapperPlanet getPlanets(Integer Id){
+    public static wrapperPlanet getPlanets(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/planets/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
+        wrapperPlanet planet = new wrapperPlanet();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            wrapperPlanet planet = (wrapperPlanet)  JSON.deserialize(responseBody, wrapperPlanet.class);
+            planet = (wrapperPlanet)  JSON.deserialize(responseBody, wrapperPlanet.class);
         }
         return planet;
     }
 
     @future (callout = true)
-    public void getFilms(){
+    public static void getFilms(){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/films/?format=json');
         request.setMethod('GET');
         try{
-            HttpResponse reponse = http.send(request);
+            HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> films = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
@@ -107,7 +107,7 @@ public with sharing class StarWarsController {
                     try{
                         wrapperFilm film  = getFilms(i);
                         // check if the film request is empty.
-                        if(!film){
+                        if(film.title ==  null){
                             System.debug('empty film');
                         }
                         else{
@@ -119,32 +119,32 @@ public with sharing class StarWarsController {
                 }
             }
         } catch(System.CalloutException e){
-            System.debug('Error in getting films: ' + e)
+            System.debug('Error in getting films: ' + e);
         }
     }
 
-    @future (callout = true)
-    public wrapperFilm getFilms(Integer Id){
+    public static wrapperFilm getFilms(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/films/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
+        wrapperFilm film = new wrapperFilm();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            wrapperFilm film = (wrapperFilm)  JSON.deserialize(responseBody, wrapperFilm.class);
+            film = (wrapperFilm)  JSON.deserialize(responseBody, wrapperFilm.class);
         }
         return film;
     }
 
     @future (callout = true)
-    public void getSpecies(){
+    public static void getSpecies(){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/species/?format=json');
         request.setMethod('GET');
         try{
-            HttpResponse reponse = http.send(request);
+            HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> species = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
@@ -153,7 +153,7 @@ public with sharing class StarWarsController {
                     try{
                         wrapperSpecies specie = getSpecies(i);
                         // check if the species request is empty.
-                        if(!specie){
+                        if(specie.name ==  null){
                             System.debug('empty species');
                         }
                         else{
@@ -169,28 +169,28 @@ public with sharing class StarWarsController {
         }
     }
 
-    @future (callout = true)
-    public wrapperSpecies getSpecies(Integer Id){
+    public static wrapperSpecies getSpecies(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/species/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
+        wrapperSpecies species = new wrapperSpecies();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            wrapperSpecies species = (wrapperSpecies)  JSON.deserialize(responseBody, wrapperSpecies);
+            species = (wrapperSpecies)  JSON.deserialize(responseBody, wrapperSpecies.class);
         }
         return species;
     }
 
     @future (callout = true)
-    public void getVehicles(){
+    public static void getVehicles(){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/vehicles/?format=json');
         request.setMethod('GET');
         try{
-            HttpResponse reponse = http.send(request);
+            HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> vehicles = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
@@ -199,7 +199,7 @@ public with sharing class StarWarsController {
                     try{
                         wrapperVehicle vehicle = getVehicles(i);
                         // check if the vehicle request is empty.
-                        if(!vehicle){
+                        if(vehicle.name ==  null){
                             System.debug('empty vehicle');
                         }
                         else{
@@ -215,28 +215,28 @@ public with sharing class StarWarsController {
         }
     }
 
-    @future (callout = true)
-    public wrapperVehicle getVehicles(Integer Id){
+    public static wrapperVehicle getVehicles(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/vehicles/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
+        wrapperVehicle vehicle = new wrapperVehicle();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            wrapperVehicle vehicle = (wrapperVehicle)  JSON.deserialize(responseBody, wrapperVehicle.class);
+            vehicle = (wrapperVehicle)  JSON.deserialize(responseBody, wrapperVehicle.class);
         }
         return vehicle;
     }
     
     @future (callout = true)
-    public void getStarships(){
+    public static void getStarships(){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/starships/?format=json');
         request.setMethod('GET');
         try{
-            HttpResponse reponse = http.send(request);
+            HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> starships = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
@@ -245,7 +245,7 @@ public with sharing class StarWarsController {
                     try{
                         wrapperStarship starship = getStarships(i);
                         // check if the starship request is empty.
-                        if(!starship){
+                        if(starship.name ==  null){
                             System.debug('empty starship');
                         }
                         else{
@@ -261,37 +261,36 @@ public with sharing class StarWarsController {
         }
     }
 
-    @future (callout = true)
-    public wrapperStarship getStarships(Integer Id){
+    public static wrapperStarship getStarships(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/starships/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
+        wrapperStarship starship = new wrapperStarship();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            wrapperStarship starship = (wrapperStarship)  JSON.deserialize(responseBody, wrapperStarship.class);
+            starship = (wrapperStarship)  JSON.deserialize(responseBody, wrapperStarship.class);
         }
         return starship;
     }
 
-    @future (callout = true)
-    public String getHomeWorld(String homeworld){
+    public static String getHomeWorld(String homeworld){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint(homeworld + '?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
+        String name;
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
             Map<String, Object> hw = (Map<String, Object>)JSON.deserializeUntyped(responseBody);
-            String name = hw.get('name');
+            name = (String) hw.get('name');
         }
         return name;
     }
 
-    @future (callout = true)
-    public List<String> getFilmname(List<String> films){
+    public static List<String> getFilmname(List<String> films){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         List<String> title =  new List<String>();
@@ -302,14 +301,13 @@ public with sharing class StarWarsController {
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> f = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-                title.add(f.get('title'));
+                title.add((String)f.get('title'));
             }
         }
         return title;
     }
 
-    @future (callout = true)
-    public List<String> getSpeciesname(List<String> species){
+    public static List<String> getSpeciesname(List<String> species){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         List<String> name =  new List<String>();
@@ -320,14 +318,13 @@ public with sharing class StarWarsController {
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> s = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-                name.add(s.get('name'));
+                name.add((String)s.get('name'));
             }
         }
         return name;
     }
     
-    @future (callout = true)
-    public List<String> getVehiclesname(List<String> vehicles){
+    public static List<String> getVehiclesname(List<String> vehicles){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         List<String> name =  new List<String>();
@@ -338,14 +335,13 @@ public with sharing class StarWarsController {
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> v = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-                name.add(v.get('name'));
+                name.add((String)v.get('name'));
             }
         }
         return name;
     }
     
-    @future (callout = true)
-    public List<String> getStarshipsname(List<String> starships){
+    public static List<String> getStarshipsname(List<String> starships){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         List<String> name =  new List<String>();
@@ -356,7 +352,7 @@ public with sharing class StarWarsController {
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
                 Map<String, Object> star = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-                name.add(star.get('name'));
+                name.add((String)star.get('name'));
             }
         }
         return name;
