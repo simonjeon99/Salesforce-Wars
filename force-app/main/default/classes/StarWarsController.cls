@@ -13,7 +13,7 @@ public with sharing class StarWarsController {
                 Integer num = (Integer) people.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        System.debug(getPeople(i));
+                        wrapperPerson person = getPeople(i);
                         // check if the people request is empty.
                         //perform creating people and inserting into org
                     } catch(DmlException e){
@@ -27,23 +27,17 @@ public with sharing class StarWarsController {
     }
 
     @future (callout = true)
-    public List<Object> getPeople(Integer Id){
+    public wrapperPerson getPeople(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/people/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
-        List<Object> values = new List<Object>();
         HttpResponse response = http.send(request);
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            Map<String, Object> person = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(person.keySet());
-            values.add(String.valueOf(Id));
-            for(String key: keys){
-                values.add(person.get(key));
-            }
+            wrapperPerson person = (wrapperPerson)  JSON.deserialize(responseBody, wrapperPerson.class);            
         }
-        return values;
+        return person;
     }
 
     @future (callout = true)
@@ -56,11 +50,11 @@ public with sharing class StarWarsController {
             HttpResponse reponse = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
-                Map<String, Object> planet = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-                Integer num = (Integer) planet.get('count');
+                Map<String, Object> planets = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
+                Integer num = (Integer) planets.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        System.debug(getPlanets(i));
+                        wrapperPlanet planet = getPlanets(i);
                     } catch(DmlException e){
                         System.debug('Error in inserting planets: ' + e);
                     }
@@ -72,23 +66,17 @@ public with sharing class StarWarsController {
     }
 
     @future (callout = true)
-    public List<Object> getPlanets(Integer Id){
+    public wrapperPlanet getPlanets(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/planets/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
-        List<Object> values = new List<Object>();
         HttpResponse response = http.send(request);
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            Map<String, Object> planet = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(planet.keySet());
-            values.add(String.valueOf(Id));
-            for(String key: keys){
-                values.add(planet.get(key));
-            }
+            wrapperPlanet planet = (wrapperPlanet)  JSON.deserialize(responseBody, wrapperPlanet.class);
         }
-        return values;
+        return planet;
     }
 
     @future (callout = true)
@@ -101,11 +89,11 @@ public with sharing class StarWarsController {
             HttpResponse reponse = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
-                Map<String, Object> film = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-                Integer num = (Integer) film.get('count');
+                Map<String, Object> films = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
+                Integer num = (Integer) films.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        System.debug(getFilms(i));
+                        wrapperFilm film  = getFilms(i);
                     } catch(DmlException e){
                         System.debug('Error in inserting film: ' + e);
                     }
@@ -117,23 +105,17 @@ public with sharing class StarWarsController {
     }
 
     @future (callout = true)
-    public List<Object> getFilms(Integer Id){
+    public wrapperFilm getFilms(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/films/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
-        List<Object> values = new List<Object>();
         HttpResponse response = http.send(request);
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            Map<String, Object> film = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(film.keySet());
-            values.add(String.valueOf(Id));
-            for(String key: keys){
-                values.add(film.get(key));
-            }
+            wrapperFilm film = (wrapperFilm)  JSON.deserialize(responseBody, wrapperFilm.class);
         }
-        return values;
+        return film;
     }
 
     @future (callout = true)
@@ -150,7 +132,7 @@ public with sharing class StarWarsController {
                 Integer num = (Integer) species.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        System.debug(getSpecies(i));
+                        wrapperSpecies specie = getSpecies(i);
                     } catch(DmlException e){
                         System.debug('Error in getting inserting species ' + e);
                     }
@@ -162,23 +144,17 @@ public with sharing class StarWarsController {
     }
 
     @future (callout = true)
-    public List<Object> getSpecies(Integer Id){
+    public wrapperSpecies getSpecies(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/species/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
-        List<Object> values = new List<Object>();
         HttpResponse response = http.send(request);
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            Map<String, Object> species = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(species.keySet());
-            values.add(String.valueOf(Id));
-            for(String key: keys){
-                values.add(species.get(key));
-            }
+            wrapperSpecies species = (wrapperSpecies)  JSON.deserialize(responseBody, wrapperSpecies);
         }
-        return values;
+        return species;
     }
 
     @future (callout = true)
@@ -191,11 +167,11 @@ public with sharing class StarWarsController {
             HttpResponse reponse = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
-                Map<String, Object> vehicle = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-                Integer num = (Integer) vehicle.get('count');
+                Map<String, Object> vehicles = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
+                Integer num = (Integer) vehicles.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        System.debug(getVehicles(i));
+                        wrapperVehicle vehicle = getVehicles(i);
                     } catch(DmlException e){
                         System.debug('Error in getting inserting vehicles ' + e);
                     }
@@ -207,23 +183,17 @@ public with sharing class StarWarsController {
     }
 
     @future (callout = true)
-    public List<Object> getVehicles(Integer Id){
+    public wrapperVehicle getVehicles(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/vehicles/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
-        List<Object> values = new List<Object>();
         HttpResponse response = http.send(request);
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            Map<String, Object> vehicle = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(vehicle.keySet());
-            values.add(String.valueOf(Id));
-            for(String key: keys){
-                values.add(vehicle.get(key));
-            }
+            wrapperVehicle vehicle = (wrapperVehicle)  JSON.deserialize(responseBody, wrapperVehicle.class);
         }
-        return values;
+        return vehicle;
     }
     
     @future (callout = true)
@@ -236,11 +206,11 @@ public with sharing class StarWarsController {
             HttpResponse reponse = http.send(request);
             if(response.getStatusCode() == 200) {
                 String responseBody =  response.getBody();
-                Map<String, Object> starship = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-                Integer num = (Integer) starship.get('count');
+                Map<String, Object> starships = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
+                Integer num = (Integer) starships.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        System.debug(getStarships(i));
+                        wrapperStarship starship = getStarships(i);
                     } catch(DmlException e){
                         System.debug('Error in inserting starships ' + e);
                     }
@@ -252,27 +222,21 @@ public with sharing class StarWarsController {
     }
 
     @future (callout = true)
-    public List<Object> getStarships(Integer Id){
+    public wrapperStarship getStarships(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/starships/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
-        List<Object> values = new List<Object>();
         HttpResponse response = http.send(request);
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            Map<String, Object> starship = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(starship.keySet());
-            values.add(String.valueOf(Id));
-            for(String key: keys){
-                values.add(starship.get(key));
-            }
+            wrapperStarship starship = (wrapperStarship)  JSON.deserialize(responseBody, wrapperStarship.class);
         }
-        return values;
+        return starship;
     }
 
     @future (callout = true)
-    public void getHomeWorld(String homeworld){
+    public String getHomeWorld(String homeworld){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint(homeworld + '?format=json');
@@ -281,92 +245,80 @@ public with sharing class StarWarsController {
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
             Map<String, Object> hw = (Map<String, Object>)JSON.deserializeUntyped(responseBody);
-            List<String> keys = new List<String>(hw.keySet());
-            List<Object> values = new List<Object>();
-            for(String key: keys){
-                values.add(hw.get(key));
-            }
+            String name = hw.get('name');
         }
+        return name;
     }
 
     @future (callout = true)
-    public void getFilmname(List<String> films){
+    public List<String> getFilmname(List<String> films){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
+        List<String> title =  new List<String>();
         for(String film : films){
             request.setEndpoint(film + '?format=json');
             request.setMethod('GET');
             HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
-            String responseBody =  response.getBody();
-            Map<String, Object> f = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(f.keySet());
-            List<Object> values = new List<Object>();
-            for(String key: keys){
-                values.add(f.get(key));
+                String responseBody =  response.getBody();
+                Map<String, Object> f = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
+                title.add(f.get('title'));
             }
         }
-        }
+        return title;
     }
 
     @future (callout = true)
-    public void getSpeciesname(List<String> species){
+    public List<String> getSpeciesname(List<String> species){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
+        List<String> name =  new List<String>();
         for(String spec : species){
             request.setEndpoint(spec + '?format=json');
             request.setMethod('GET');
             HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
-            String responseBody =  response.getBody();
-            Map<String, Object> s = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(s.keySet());
-            List<Object> values = new List<Object>();
-            for(String key: keys){
-                values.add(s.get(key));
+                String responseBody =  response.getBody();
+                Map<String, Object> s = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
+                name.add(s.get('name'));
             }
-
         }
-        }
+        return name;
     }
     
     @future (callout = true)
-    public void getVehiclesname(List<String> vehicles){
+    public List<String> getVehiclesname(List<String> vehicles){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
+        List<String> name =  new List<String>();
         for(String vehicle : vehicles){
             request.setEndpoint(vehicle + '?format=json');
             request.setMethod('GET');
             HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
-            String responseBody =  response.getBody();
-            Map<String, Object> v = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(v.keySet());
-            List<Object> values = new List<Object>();
-            for(String key: keys){
-                values.add(v.get(key));
+                String responseBody =  response.getBody();
+                Map<String, Object> v = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
+                name.add(v.get('name'));
             }
         }
-        }
+        return name;
     }
     
     @future (callout = true)
-    public void getStarshipsname(List<String> starships){
+    public List<String> getStarshipsname(List<String> starships){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
+        List<String> name =  new List<String>();
         for(String starship : starships){
             request.setEndpoint(starship + '?format=json');
             request.setMethod('GET');
             HttpResponse response = http.send(request);
             if(response.getStatusCode() == 200) {
-            String responseBody =  response.getBody();
-            Map<String, Object> star = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
-            List<String> keys =  new List<String>(star.keySet());
-            List<Object> values = new List<Object>();
-            for(String key: keys){
-                values.add(star.get(key));
+                String responseBody =  response.getBody();
+                Map<String, Object> star = (Map<String, Object>)  JSON.deserializeUntyped(responseBody);
+                name.add(star.get('name'));
             }
         }
-        }
+        return name;
     }
 }
