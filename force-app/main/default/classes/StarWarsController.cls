@@ -15,7 +15,12 @@ public with sharing class StarWarsController {
                     try{
                         wrapperPerson person = getPeople(i);
                         // check if the people request is empty.
-                        //perform creating people and inserting into org
+                        if(!person){
+                            System.debug('empty person');
+                        }
+                        else{
+                            //perform creating people and inserting into org 
+                        }
                     } catch(DmlException e){
                         System.debug('Error in inserting people: ' + e);
                     }
@@ -55,6 +60,13 @@ public with sharing class StarWarsController {
                 for(Integer i = 1; i <= num; i++){
                     try{
                         wrapperPlanet planet = getPlanets(i);
+                        // check if the planet request is empty.
+                        if(!planet){
+                            System.debug('empty planet');
+                        }
+                        else{
+                            //perform creating planet and inserting into org 
+                        }
                     } catch(DmlException e){
                         System.debug('Error in inserting planets: ' + e);
                     }
@@ -94,6 +106,13 @@ public with sharing class StarWarsController {
                 for(Integer i = 1; i <= num; i++){
                     try{
                         wrapperFilm film  = getFilms(i);
+                        // check if the film request is empty.
+                        if(!film){
+                            System.debug('empty film');
+                        }
+                        else{
+                            //perform creating film and inserting into org 
+                        }
                     } catch(DmlException e){
                         System.debug('Error in inserting film: ' + e);
                     }
@@ -133,6 +152,13 @@ public with sharing class StarWarsController {
                 for(Integer i = 1; i <= num; i++){
                     try{
                         wrapperSpecies specie = getSpecies(i);
+                        // check if the species request is empty.
+                        if(!specie){
+                            System.debug('empty species');
+                        }
+                        else{
+                            //perform creating species and inserting into org 
+                        }
                     } catch(DmlException e){
                         System.debug('Error in getting inserting species ' + e);
                     }
@@ -172,6 +198,13 @@ public with sharing class StarWarsController {
                 for(Integer i = 1; i <= num; i++){
                     try{
                         wrapperVehicle vehicle = getVehicles(i);
+                        // check if the vehicle request is empty.
+                        if(!vehicle){
+                            System.debug('empty vehicle');
+                        }
+                        else{
+                            //perform creating vehicle and inserting into org 
+                        }
                     } catch(DmlException e){
                         System.debug('Error in getting inserting vehicles ' + e);
                     }
@@ -211,6 +244,13 @@ public with sharing class StarWarsController {
                 for(Integer i = 1; i <= num; i++){
                     try{
                         wrapperStarship starship = getStarships(i);
+                        // check if the starship request is empty.
+                        if(!starship){
+                            System.debug('empty starship');
+                        }
+                        else{
+                            //perform creating starship and inserting into org 
+                        }
                     } catch(DmlException e){
                         System.debug('Error in inserting starships ' + e);
                     }
