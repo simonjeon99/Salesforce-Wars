@@ -177,6 +177,27 @@ public with sharing class StarWarsController {
                         }
                         else{
                             //perform creating film and inserting into org 
+                            Film__c newFilm = new Film__c();
+                            newFilm.Name =  film.title;
+                            if(film.episode_id.isNumeric()){
+                                newFilm.Episode__c = Integer.ValueOf(film.episode_id);
+                            } else{
+                                newFilm.Episode__c = null;
+                            }
+                            newFilm.Opening__c = film.opening_crawl;
+                            newFilm.Director__c = film.director;
+                            newFilm.Producer__c = film.producer;
+                            newFilm.Release__c = date.ValueOf(film.release_date);
+                            // newFilm.Characters__c = film.characters;
+                            // newFilm.Planets__c = film.planets;
+                            // newFilm.Starships__c = film.starships;
+                            // newFilm.Vehicles__c = film.vehicles;
+                            // newFilm.Species__c = film.species;
+                            // newFim.Created__c = film.created;
+                            // newFilm.Edited__c = film.edited;
+                            // newFilm.Url__c = film.url;
+
+                            insert newFilm;
                         }
                     } catch(DmlException e){
                         System.debug('Error in inserting film: ' + e);
@@ -222,7 +243,32 @@ public with sharing class StarWarsController {
                             System.debug('empty species');
                         }
                         else{
-                            //perform creating species and inserting into org 
+                            Species__c newSpecies = new Species__c();
+                            newSpecies.Name = specie.name;
+                            newSpecies.Classification__c = specie.classification;
+                            newSpecies.Designation__c = specie.designation;
+                            if(specie.average_height.isNumeric()){
+                                newSpecies.Average_Height__c = Integer.ValueOf(specie.average_height);
+                            } else{
+                                newSpecies.Average_Height__c = null;
+                            }
+                            newSpecies.Skincolors__c = specie.skin_colors;
+                            newSpecies.Haircolors__c = specie.hair_colors;
+                            newSpecies.Eyecolors__c = specie.eye_colors;
+                            if(specie.average_lifespan.isNumeric()){
+                                newSpecies.Average_Lifespan__c = Integer.ValueOf(specie.average_lifespan);
+                            } else{
+                                newSpecies.Average_Lifespan__c = null;
+                            }
+                            //newSpecies.Homeworld__c = specie.homeworld;
+                            newSpecies.Language__c = specie.language;
+                            //newSpecies.People__c = specie.people;
+                            //newSpecies.Films__c = specie.films;
+                            //newSpecies.Created__cs = specie.created;
+                            //newSpecies.Edited__c; = specie.edited;
+                            //newSpecies.Url__c; = specie.url;
+
+                            insert newSpecies;
                         }
                     } catch(DmlException e){
                         System.debug('Error in getting inserting species ' + e);
@@ -269,6 +315,37 @@ public with sharing class StarWarsController {
                         }
                         else{
                             //perform creating vehicle and inserting into org 
+                            Vehicle__c newVehicle = new Vehicle__c();
+                            newVehicle.Name = vehicle.name;
+                            newVehicle.Model__c = vehicle.model;
+                            newVehicle.Manufacturer__c = vehicle.manufacturer;
+                            if(vehicle.cost_in_credits.isNumeric()){
+                                newVehicle.Cost_In_Credits__c = Integer.ValueOf(vehicle.cost_in_credits);
+                            } else{
+                                newVehicle.Cost_In_Credits__c = null;
+                            }
+                            if(vehicle.length.isNumeric()){
+                                newVehicle.Length__c = Decimal.ValueOf(vehicle.length);
+                            } else{
+                                newVehicle.Length__c = null;
+                            }
+                            newVehicle.Max_Atmosphering_Speed__c = vehicle.max_atmosphering_speed;
+                            newVehicle.Crew__c = vehicle.crew;
+                            newVehicle.Passengers__c = vehicle.passengers;
+                            if(vehicle.cargo_capacity.isNumeric()){
+                                newVehicle.Cargo_Capacity__c = Integer.ValueOf(vehicle.cargo_capacity);
+                            } else{
+                                newVehicle.Cargo_Capacity__c = null;
+                            }
+                            newVehicle.Consumables__c = vehicle.consumables;
+                            newVehicle.Class__c = vehicle.vehicle_class;
+                            //newVehicle.Pilots__c = vehicle.pilots;
+                            //newVehicle.Films__c = vehicle.films;
+                            //newVehicle.Created__c = vehicle.created;
+                            //newVehicle.Edited__c = vehicle.edited;
+                            //newVehicle.Url__c = vehicle.url;
+
+                            insert newVehicle;
                         }
                     } catch(DmlException e){
                         System.debug('Error in getting inserting vehicles ' + e);
@@ -315,6 +392,43 @@ public with sharing class StarWarsController {
                         }
                         else{
                             //perform creating starship and inserting into org 
+                            Starship__c newStarship = new Starship__c();
+                            newStarship.Name = starship.name;
+                            newStarship.Model__c = starship.model;
+                            newStarship.Manufacturer__c = starship.manufacturer;
+                            if(starship.cost_in_credits.isNumeric()){
+                                newStarship.Cost_In_Credits__c = Integer.ValueOf(starship.cost_in_credits);
+                            } else{
+                                newStarship.Cost_In_Credits__c = null;
+                            }
+                            if(starship.length.isNumeric()){
+                                newStarship.Length__c = Decimal.ValueOf(starship.length);
+                            } else{
+                                newStarship.Length__c = null;
+                            }
+                            newStarship.Max_Atmosphering_Speed__c = starship.max_atmosphering_speed;
+                            newStarship.Crew__c = starship.crew;
+                            newStarship.Passengers__c = starship.passengers;
+                            if(starship.cargo_capacity.isNumeric()){
+                                newStarship.Cargo_Capacity__c = Integer.ValueOf(starship.cargo_capacity);
+                            } else{
+                                newStarship.Cargo_Capacity__c = null;
+                            }
+                            newStarship.Consumables__c = starship.consumables;
+                            newStarship.Hyperdrive_Rating__c = starship.hyperdrive_rating;
+                            if(starship.MGLT.isNumeric()){
+                                newStarship.MGLT__c = Integer.ValueOf(starship.MGLT);
+                            } else{
+                                newStarship.MGLT__c = null;
+                            }
+                            newStarship.Class__c = starship.starship_class;
+                            //newStarship.Pilots__c = starship.pilots;
+                            //newStarship.Films__c = starship.films;
+                            //newStarship.Created__c = starship.created;
+                            //newStarship.Edited__c = starship.edited;
+                            //newStarship.Url__c = starship.url;
+
+                            insert newStarship;
                         }
                     } catch(DmlException e){
                         System.debug('Error in inserting starships ' + e);
