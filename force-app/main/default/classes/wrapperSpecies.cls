@@ -1,4 +1,4 @@
-public with sharing class wrapperSpecies {
+public with sharing class WrapperSpecies {
     public String name;
     public String classification;
     public String designation;

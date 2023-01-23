@@ -1,4 +1,4 @@
-public with sharing class wrapperFilm {
+public with sharing class WrapperFilm {
     public String title;
     public String episode_id;
     public String opening_crawl;

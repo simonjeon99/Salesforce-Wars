@@ -13,7 +13,7 @@ public with sharing class StarWarsController {
                 Integer num = (Integer) people.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        wrapperPerson person = getPeople(i);
+                        WrapperPerson person = getPeople(i);
                         // check if the people request is empty.
                         if(person.name ==  null){
                             System.debug('empty person');
@@ -59,16 +59,16 @@ public with sharing class StarWarsController {
         }
     }
 
-    public static wrapperPerson getPeople(Integer Id){
+    public static WrapperPerson getPeople(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/people/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
-        wrapperPerson person = new wrapperPerson();
+        WrapperPerson person = new WrapperPerson();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            person = (wrapperPerson)  JSON.deserialize(responseBody, wrapperPerson.class);            
+            person = (WrapperPerson)  JSON.deserialize(responseBody, WrapperPerson.class);            
         }
         return person;
     }
@@ -87,7 +87,7 @@ public with sharing class StarWarsController {
                 Integer num = (Integer) planets.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        wrapperPlanet planet = getPlanets(i);
+                        WrapperPlanet planet = getPlanets(i);
                         // check if the planet request is empty.
                         if(planet.name ==  null){
                             System.debug('empty planet');
@@ -142,16 +142,16 @@ public with sharing class StarWarsController {
         }
     }
 
-    public static wrapperPlanet getPlanets(Integer Id){
+    public static WrapperPlanet getPlanets(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/planets/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
-        wrapperPlanet planet = new wrapperPlanet();
+        WrapperPlanet planet = new WrapperPlanet();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            planet = (wrapperPlanet)  JSON.deserialize(responseBody, wrapperPlanet.class);
+            planet = (WrapperPlanet)  JSON.deserialize(responseBody, WrapperPlanet.class);
         }
         return planet;
     }
@@ -170,7 +170,7 @@ public with sharing class StarWarsController {
                 Integer num = (Integer) films.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        wrapperFilm film  = getFilms(i);
+                        WrapperFilm film  = getFilms(i);
                         // check if the film request is empty.
                         if(film.title ==  null){
                             System.debug('empty film');
@@ -209,16 +209,16 @@ public with sharing class StarWarsController {
         }
     }
 
-    public static wrapperFilm getFilms(Integer Id){
+    public static WrapperFilm getFilms(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/films/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
-        wrapperFilm film = new wrapperFilm();
+        WrapperFilm film = new WrapperFilm();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            film = (wrapperFilm)  JSON.deserialize(responseBody, wrapperFilm.class);
+            film = (WrapperFilm)  JSON.deserialize(responseBody, WrapperFilm.class);
         }
         return film;
     }
@@ -237,7 +237,7 @@ public with sharing class StarWarsController {
                 Integer num = (Integer) species.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        wrapperSpecies specie = getSpecies(i);
+                        WrapperSpecies specie = getSpecies(i);
                         // check if the species request is empty.
                         if(specie.name ==  null){
                             System.debug('empty species');
@@ -280,16 +280,16 @@ public with sharing class StarWarsController {
         }
     }
 
-    public static wrapperSpecies getSpecies(Integer Id){
+    public static WrapperSpecies getSpecies(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/species/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
-        wrapperSpecies species = new wrapperSpecies();
+        WrapperSpecies species = new WrapperSpecies();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            species = (wrapperSpecies)  JSON.deserialize(responseBody, wrapperSpecies.class);
+            species = (WrapperSpecies)  JSON.deserialize(responseBody, WrapperSpecies.class);
         }
         return species;
     }
@@ -308,7 +308,7 @@ public with sharing class StarWarsController {
                 Integer num = (Integer) vehicles.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        wrapperVehicle vehicle = getVehicles(i);
+                        WrapperVehicle vehicle = getVehicles(i);
                         // check if the vehicle request is empty.
                         if(vehicle.name ==  null){
                             System.debug('empty vehicle');
@@ -357,16 +357,16 @@ public with sharing class StarWarsController {
         }
     }
 
-    public static wrapperVehicle getVehicles(Integer Id){
+    public static WrapperVehicle getVehicles(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/vehicles/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
-        wrapperVehicle vehicle = new wrapperVehicle();
+        WrapperVehicle vehicle = new WrapperVehicle();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            vehicle = (wrapperVehicle)  JSON.deserialize(responseBody, wrapperVehicle.class);
+            vehicle = (WrapperVehicle)  JSON.deserialize(responseBody, WrapperVehicle.class);
         }
         return vehicle;
     }
@@ -385,7 +385,7 @@ public with sharing class StarWarsController {
                 Integer num = (Integer) starships.get('count');
                 for(Integer i = 1; i <= num; i++){
                     try{
-                        wrapperStarship starship = getStarships(i);
+                        WrapperStarship starship = getStarships(i);
                         // check if the starship request is empty.
                         if(starship.name ==  null){
                             System.debug('empty starship');
@@ -440,16 +440,16 @@ public with sharing class StarWarsController {
         }
     }
 
-    public static wrapperStarship getStarships(Integer Id){
+    public static WrapperStarship getStarships(Integer Id){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://swapi.dev/api/starships/' + String.valueOf(Id) + '/?format=json');
         request.setMethod('GET');
         HttpResponse response = http.send(request);
-        wrapperStarship starship = new wrapperStarship();
+        WrapperStarship starship = new WrapperStarship();
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
-            starship = (wrapperStarship)  JSON.deserialize(responseBody, wrapperStarship.class);
+            starship = (WrapperStarship)  JSON.deserialize(responseBody, WrapperStarship.class);
         }
         return starship;
     }

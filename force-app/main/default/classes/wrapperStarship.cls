@@ -1,4 +1,4 @@
-public with sharing class wrapperStarship {
+public with sharing class WrapperStarship {
     public String name;
     public String model;
     public String manufacturer;

@@ -1,4 +1,4 @@
-public with sharing class wrapperPerson {
+public with sharing class WrapperPerson {
     public String name;
     public String height;
     public String mass;
