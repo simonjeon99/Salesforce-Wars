@@ -1,4 +1,5 @@
 public with sharing class WrapperPerson {
+    public String id;
     public String name;
     public String height;
     public String mass;

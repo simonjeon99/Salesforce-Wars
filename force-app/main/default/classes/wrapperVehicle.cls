@@ -1,4 +1,5 @@
 public with sharing class WrapperVehicle {
+    public String id;
     public String name;
     public String model;
     public String manufacturer;

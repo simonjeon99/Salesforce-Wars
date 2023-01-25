@@ -1,4 +1,5 @@
 public with sharing class WrapperSpecies {
+    public String id;
     public String name;
     public String classification;
     public String designation;

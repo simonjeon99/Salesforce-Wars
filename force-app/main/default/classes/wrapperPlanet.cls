@@ -1,4 +1,5 @@
 public with sharing class WrapperPlanet {
+    public String id;
     public String name;
     public String rotation_period;
     public String orbital_period;
