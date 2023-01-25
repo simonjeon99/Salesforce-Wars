@@ -48,7 +48,7 @@ public with sharing class StarWarsController {
                             // newContact.Edited__c = person.edited;
                             // newContact.Url__c = person.url;
                             
-                            insert newContact;
+                            upsert newContact ID__c;
                         }
                     } catch(DmlException e){
                         System.debug('Error in inserting people: ' + e);
@@ -133,7 +133,7 @@ public with sharing class StarWarsController {
                             // newAccount.Edited__c = planet.edited;
                             // newAccount.Url__c = planet.url;
 
-                            insert newAccount;
+                            upsert newAccount ID__c;
                         }
                     } catch(DmlException e){
                         System.debug('Error in inserting planets: ' + e);
@@ -202,7 +202,7 @@ public with sharing class StarWarsController {
                             // newFilm.Edited__c = film.edited;
                             // newFilm.Url__c = film.url;
 
-                            insert newFilm;
+                            upsert newFilm ID__c;
                         }
                     } catch(DmlException e){
                         System.debug('Error in inserting film: ' + e);
@@ -275,7 +275,7 @@ public with sharing class StarWarsController {
                             //newSpecies.Edited__c; = specie.edited;
                             //newSpecies.Url__c; = specie.url;
 
-                            insert newSpecies;
+                            upsert newSpecies ID__c;
                         }
                     } catch(DmlException e){
                         System.debug('Error in getting inserting species ' + e);
@@ -354,7 +354,7 @@ public with sharing class StarWarsController {
                             //newVehicle.Edited__c = vehicle.edited;
                             //newVehicle.Url__c = vehicle.url;
 
-                            insert newVehicle;
+                            upsert newVehicle ID__c;
                         }
                     } catch(DmlException e){
                         System.debug('Error in getting inserting vehicles ' + e);
@@ -439,7 +439,7 @@ public with sharing class StarWarsController {
                             //newStarship.Edited__c = starship.edited;
                             //newStarship.Url__c = starship.url;
 
-                            insert newStarship;
+                            upsert newStarship ID__c;
                         }
                     } catch(DmlException e){
                         System.debug('Error in inserting starships ' + e);
