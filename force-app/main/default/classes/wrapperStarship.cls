@@ -1,5 +1,5 @@
 public with sharing class WrapperStarship {
-    public String id;
+    public Integer id;
     public String name;
     public String model;
     public String manufacturer;

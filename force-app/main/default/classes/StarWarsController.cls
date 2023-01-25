@@ -21,7 +21,7 @@ public with sharing class StarWarsController {
                         else{
                             //perform creating people and inserting into org 
                             Contact newContact = new Contact();
-                            newContact.ID__c = Integer.ValueOf(person.id);
+                            newContact.ID__c = person.id;
                             newContact.Firstname = person.name.substringBefore(' ');
                             newContact.Lastname = person.name.substringAfter(' ');
                             if(person.height.isNumeric()){
@@ -97,7 +97,7 @@ public with sharing class StarWarsController {
                         else{
                             //perform creating planet and inserting into org 
                             Account newAccount = new Account();
-                            newAccount.ID__c = Integer.ValueOf(planet.id);
+                            newAccount.ID__c = planet.id;
                             newAccount.Name = planet.name;
                             if(planet.rotation_period.isNumeric()){
                                 newAccount.Rotation__c = Decimal.ValueOf(planet.rotation_period);
@@ -182,7 +182,7 @@ public with sharing class StarWarsController {
                         else{
                             //perform creating film and inserting into org 
                             Film__c newFilm = new Film__c();
-                            newFilm.ID__c = Integer.ValueOf(film.id);
+                            newFilm.ID__c = film.id;
                             newFilm.Name =  film.title;
                             if(film.episode_id.isNumeric()){
                                 newFilm.Episode__c = Integer.ValueOf(film.episode_id);
@@ -224,7 +224,7 @@ public with sharing class StarWarsController {
         if(response.getStatusCode() == 200) {
             String responseBody =  response.getBody();
             film = (WrapperFilm)  JSON.deserialize(responseBody, WrapperFilm.class);
-            film.id = Id
+            film.id = Id;
         }
         return film;
     }
@@ -250,7 +250,7 @@ public with sharing class StarWarsController {
                         }
                         else{
                             Species__c newSpecies = new Species__c();
-                            newSpecies.ID__c = Integer.ValueOf(specie.id);
+                            newSpecies.ID__c = specie.id;
                             newSpecies.Name = specie.name;
                             newSpecies.Classification__c = specie.classification;
                             newSpecies.Designation__c = specie.designation;
@@ -324,7 +324,7 @@ public with sharing class StarWarsController {
                         else{
                             //perform creating vehicle and inserting into org 
                             Vehicle__c newVehicle = new Vehicle__c();
-                            newVehicle.ID__c = Integer.ValueOf(vehicle.id);
+                            newVehicle.ID__c = vehicle.id;
                             newVehicle.Name = vehicle.name;
                             newVehicle.Model__c = vehicle.model;
                             newVehicle.Manufacturer__c = vehicle.manufacturer;
@@ -403,7 +403,7 @@ public with sharing class StarWarsController {
                         else{
                             //perform creating starship and inserting into org 
                             Starship__c newStarship = new Starship__c();
-                            newStarship.ID__c = Integer.ValueOf(starship.id);
+                            newStarship.ID__c = starship.id;
                             newStarship.Name = starship.name;
                             newStarship.Model__c = starship.model;
                             newStarship.Manufacturer__c = starship.manufacturer;

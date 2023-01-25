@@ -1,5 +1,5 @@
 public with sharing class WrapperFilm {
-    public String id;
+    public Integer id;
     public String title;
     public String episode_id;
     public String opening_crawl;
